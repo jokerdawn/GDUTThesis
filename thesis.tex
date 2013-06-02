@@ -1,0 +1,33 @@
+\documentclass[master,otf]{gdutthesis}
+\usepackage{mygdut}
+
+\begin{document}
+\graphicspath{{figures/}}
+
+\frontmatter
+\input{data/cover}
+\input{data/abstract}
+
+% 生成目录
+\tableofcontents
+
+% 书写正文，可以根据需要增添章节。
+\mainmatter
+\input{data/chap01}
+\input{data/chap02}
+\input{data/chap03}
+\input{data/chap04}
+
+% 参考文献
+\input{data/bib}
+
+% 致谢
+\input{data/ack}
+
+% 附录
+\backmatter
+\input{data/appendix01}
+%\input{data/appendix02}
+
+\end{document}
+%%
