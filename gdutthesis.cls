@@ -1,21 +1,17 @@
-\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{gdutthesis}
 
-\newif\ifismaster\ismastertrue
 \newif\ifisttf\isttftrue
-\DeclareOption{master}{\ismastertrue}
-\DeclareOption{doctor}{\ismasterfalse}
 \newif\ifistwoside\istwosidefalse
 \DeclareOption{twoside}{\istwosidetrue}
 \DeclareOption{ttf}{\isttftrue}
 \DeclareOption{otf}{\isttffalse}
 \newif\ifisws\iswsfalse
 \DeclareOption{ws}{\iswstrue}
-\newif\ifischapter\ischapterfalse
-\DeclareOption{chapterhead}{\ischaptertrue}
 \DeclareOption*{\PackageWarning{gdutthesis}{Unknown Option '\CurrentOption'}}
 \ProcessOptions\relax
 \RequirePackage{ifthen,calc}
+
 \ifistwoside
   \LoadClass[a4paper,12pt,openright,twoside]{book}
 \else
@@ -29,26 +25,23 @@
 \RequirePackage{graphicx}
 \RequirePackage[config]{subfig}
 \RequirePackage{float}
-%\Requirepackage{floatrow}
 \RequirePackage{array}
-%\RequirePackage{longtable}
 \RequirePackage{booktabs}
 \RequirePackage{multirow}
 \RequirePackage{tabularx}
-%\RequirePackage{slashbox}
 \RequirePackage[neverdecrease]{paralist}
 \RequirePackage{xcolor}
 \RequirePackage{amsmath,amssymb,bm}
 \RequirePackage[varg]{txfonts}
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
 \RequirePackage[CJKnumber,no-math,BoldFont,SlantFont]{xeCJK}
-%\RequirePackage{ulem}
 \RequirePackage{indentfirst}
 \RequirePackage[numbers,sort&compress,square]{natbib}
 \RequirePackage[CJKbookmarks=true,pdfborder=0 0 1]{hyperref}
 \defaultfontfeatures{Mapping=tex-text}
 \xeCJKsetcharclass{"0}{"2E7F}{0}
 \xeCJKsetcharclass{"2E80}{"FFFF}{1}
+
 \newcommand\installTTF{%
   \setmainfont{Times New Roman}
   \setsansfont{Arial}
@@ -70,6 +63,7 @@
   \setCJKfamilyfont{li}{LiSu}
   \setCJKfamilyfont{you}{YouYuan}
 }
+
 \newcommand\installOTF{%
   \setmainfont{Times New Roman} % could be changed to "Times New Roman PS Std"
   \setsansfont{Arial}
@@ -90,6 +84,7 @@
 \else
   \installOTF
 \fi
+
 \newcommand{\song}{\CJKfamily{song}}    % 宋体
 \newcommand{\fs}{\CJKfamily{fs}}        % 仿宋体
 \newcommand{\kai}{\CJKfamily{kai}}      % 楷体
@@ -135,9 +130,8 @@
 
 \renewcommand{\tabularxcolumn}[1]{m{#1}}
 
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} % 上标形式引用
+% \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} %不知道为什测试无效
 
-\newcommand{\emdash}{\kern0.3ex\rule[0.8ex]{2em}{0.1ex}\kern0.3ex}
 \renewcommand\contentsname{目\hspace{5em}录}
 \newcommand\ackname{致\hspace{1em}谢}
 \newcommand\equationname{公式}
@@ -162,7 +156,7 @@
 \fancypagestyle{emptypage}{\fancyhf{}\fancyfoot[ER,OR]{\thepage}}
 
 \renewcommand\frontmatter{%
-    %\if@openright\cleardoublepage\else\clearpage\fi
+    \if@openright\cleardoublepage\else\clearpage\fi
   \clearpage
     \@mainmatterfalse
 	\fancyhf{}
@@ -170,7 +164,7 @@
 }
 
 \renewcommand\mainmatter{%
-    %\if@openright\cleardoublepage\else\clearpage\fi
+    \if@openright\cleardoublepage\else\clearpage\fi
 	\clearpage
     \@mainmattertrue
     \pagenumbering{arabic}
@@ -179,7 +173,7 @@
     \pagestyle{mainpage}
   }
 \renewcommand\backmatter{%
-    %\if@openright\cleardoublepage\else\clearpage\fi
+    \if@openright\cleardoublepage\else\clearpage\fi
 	\clearpage	
     \pagestyle{appendixpage}
   }
@@ -189,10 +183,8 @@
   \chapter*{\ackname}%
   \addcontentsline{toc}{chapter}{致谢}%
   \xiaosi[1]%
-  %\@mainmatterture
   \@afterheading
 }
-{\par\vspace{1em}\par}
 
 \newcounter{appx}[chapter]
 \renewcommand{\theappx}{\Alph{appx}}
@@ -226,7 +218,7 @@
   \vspace*{\fill}
   \clearpage\fi\fi%
 }
-%%
+
 \newcommand\cabstractname{摘\hspace{2em}要}
 \newcommand\ckeywordsname{{\heiti \sihao \textbf{关键词}}}
 \newcommand\ckeywords[1]{\xiaosi \songti \ckeywordsname: #1}
@@ -260,7 +252,7 @@
     {\titlerule*{.}\contentspage}
 
 
-\renewcommand\chapter{%\if@openright\cleardoublepage\else\clearpage\fi
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
                      \clearpage
                     \global\@topnum\z@
                     \@afterindentfalse
@@ -269,7 +261,7 @@
 
 					\def\gdut@chapter[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
-    %\if@openright\cleardoublepage\else\clearpage\fi
+    \if@openright\cleardoublepage\else\clearpage\fi
 	\clearpage
     \phantomsection
     \if@mainmatter
@@ -319,7 +311,6 @@
   \addcontentsline{toc}{chapter}{参考文献}
   \list{\@biblabel{\@arabic\c@enumiv}}%
   {\renewcommand{\makelabel}[1]{##1\hfill}
-%   \settowidth\labelwidth{1.1cm}
     \setlength{\labelsep}{1ex}
     \setlength{\itemindent}{0pt}
     \setlength{\leftmargin}{\labelwidth+\labelsep}
@@ -358,13 +349,14 @@
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.80}
+
 \let\old@tabular\@tabular
 
 \DeclareCaptionLabelFormat{tabularlabel}{{{\wuhao[0.75]} \heiti #1~\rmfamily #2}}
 \DeclareCaptionLabelFormat{figurelabel}{{{\wuhao[0.75]} \song #1~\rmfamily #2}}
 \DeclareCaptionLabelSeparator{floatsong}{\hspace{1em}}
-\DeclareCaptionFont{tabularcap}{{\wuhao[0.75]}  \bfseries \heiti}
-\DeclareCaptionFont{figurecap}{{\wuhao[0.75]}  \song}
+\DeclareCaptionFont{tabularcap}{{\wuhao[0.75]}\bfseries \heiti}
+\DeclareCaptionFont{figurecap}{{\wuhao[0.75]}\song}
 \captionsetup[table]{position=top,belowskip=-0.2em,aboveskip=0.1em,labelformat=tabularlabel,labelsep=floatsong,font=tabularcap}
 \captionsetup[figure]{position=bottom,belowskip=0.1em,aboveskip=-0.2em,labelformat=figurelabel,labelsep=floatsong,font=figurecap}
 \captionsetup[subfloat]{justification=centering}
@@ -400,6 +392,7 @@
 \newtheorem{example}{例}[section]
 \newtheorem{problem}{问题}[section]
 \newtheorem{remark}{注释}[section]
+
 \renewenvironment{split}{%
   \if@display%
     \ifinner%
@@ -417,5 +410,3 @@
 }
 
 \endinput
-%%
-%% End of file `gdutthesis.cls'.
