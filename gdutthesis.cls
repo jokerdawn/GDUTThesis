@@ -259,11 +259,11 @@
                     \secdef\gdut@chapter\@schapter}
 					
 
-					\def\gdut@chapter[#1]#2{
+\def\gdut@chapter[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \if@openright\cleardoublepage\else\clearpage\fi
 	\clearpage
-    \phantomsection
+    \phantomsection %指引到标签\label所在的位置，http://zh.wikibooks.org/wiki/LaTeX/%E6%A0%87%E8%AE%B0%E4%B8%8E%E5%BC%95%E7%94%A8
     \if@mainmatter
       \refstepcounter{chapter}%
       \addcontentsline{toc}{chapter}%
