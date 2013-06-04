@@ -86,9 +86,14 @@
 
 \newlength\thu@linespace %自定义基线大小 原命令为\baselineskip 或 \lineskip
 
-\newcommand{\thu@choosefont}[2]{%
-    \setlength{\thu@linespace}{#2*\real{#1}}%
-    \fontsize{#2}{\thu@linespace}\selectfont}
+%\newcommand{\thu@choosefont}[2]{%
+%    \setlength{\thu@linespace}{#2*\real{#1}}  %#1默认为\baselinestretch 即字号大小乘与N倍行距 
+%    \fontsize{#2}{\thu@linespace}\selectfont}
+
+%附上一个以Lineskip为基准的选择字体命令，这样符合使用Word者的习惯，1.5倍行距则\renewcommand{\baselinestretch}{1.5} 
+%http://blog.he96.com/2011/09/tex.html
+\newcommand{\thu@choosefont}[2]{\fontsize{#2}{#1\baselineskip}\selectfont}
+    
 \def\thu@define@fontsize#1#2{%
     \expandafter\newcommand\csname #1\endcsname[1][\baselinestretch]{%
     \thu@choosefont{##1}{#2}}}
