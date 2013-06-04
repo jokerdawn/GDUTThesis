@@ -38,7 +38,11 @@
 \RequirePackage{indentfirst}
 \RequirePackage[numbers,sort&compress,square]{natbib}
 \RequirePackage[CJKbookmarks=true,pdfborder=0 0 1]{hyperref}
-\defaultfontfeatures{Mapping=tex-text}
+
+\defaultfontfeatures{Mapping=tex-text} %Using the tex-text mapping is also equivalent to writing Ligatures=TeX. 
+%The use of the latter syntax is recommended for better compatibility with LuaTEX documents.
+%http://mirror.math.ku.edu/tex-archive/macros/latex/contrib/fontspec/fontspec.pdf
+
 \xeCJKsetcharclass{"0}{"2E7F}{0}
 \xeCJKsetcharclass{"2E80}{"FFFF}{1}
 
@@ -49,19 +53,13 @@
   \ifisws
     \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
     \setCJKmonofont{KaiTi} % Pluto use LiSu Thu use Kaiti, orig is SimSun
-    \setCJKfamilyfont{fs}{FangSong}
-    \setCJKfamilyfont{kai}{KaiTi}
   \else
     \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi_GB2312}]{SimSun}
     \setCJKmonofont{KaiTi_GB2312} % Pluto use LiSu Thu use Kaiti, orig is SimSun
-    \setCJKfamilyfont{fs}{FangSong_GB2312}
-    \setCJKfamilyfont{kai}{KaiTi_GB2312}
   \fi
   \setCJKsansfont{SimHei}
   \setCJKfamilyfont{song}{SimSun}
   \setCJKfamilyfont{hei}{SimHei}
-  \setCJKfamilyfont{li}{LiSu}
-  \setCJKfamilyfont{you}{YouYuan}
 }
 
 \newcommand\installOTF{%
@@ -73,10 +71,6 @@
   \setCJKmonofont{Adobe Kaiti Std}
   \setCJKfamilyfont{song}{Adobe Song Std}
   \setCJKfamilyfont{hei}{Adobe Heiti Std}
-  \setCJKfamilyfont{fs}{Adobe Fangsong Std}
-  \setCJKfamilyfont{kai}{Adobe Kaiti Std}
-  \setCJKfamilyfont{li}{Adobe Kaiti Std}
-  \setCJKfamilyfont{you}{Adobe Kaiti Std}
 }
 
 \ifisttf
@@ -86,19 +80,11 @@
 \fi
 
 \newcommand{\song}{\CJKfamily{song}}    % 宋体
-\newcommand{\fs}{\CJKfamily{fs}}        % 仿宋体
-\newcommand{\kai}{\CJKfamily{kai}}      % 楷体
 \newcommand{\hei}{\CJKfamily{hei}}      % 黑体
-\newcommand{\li}{\CJKfamily{li}}        % 隶书
-\newcommand{\you}{\CJKfamily{you}}      % 幼圆
 \def\songti{\song}
-\def\fangsong{\fs}
-\def\kaishu{\kai}
 \def\heiti{\hei}
-\def\lishu{\li}
-\def\youyuan{\you}
 
-\newlength\thu@linespace
+\newlength\thu@linespace %自定义基线大小 原命令为\baselineskip 或 \lineskip
 
 \newcommand{\thu@choosefont}[2]{%
     \setlength{\thu@linespace}{#2*\real{#1}}%
@@ -126,11 +112,11 @@
 \thu@define@fontsize{qihao}{5.5bp}
 \thu@define@fontsize{bahao}{5bp}
 
-\renewcommand{\baselinestretch}{1.765}
+\renewcommand{\baselinestretch}{1.5}
 
 \renewcommand{\tabularxcolumn}[1]{m{#1}}
 
-% \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} %不知道为什测试无效
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} 
 
 \renewcommand\contentsname{目\hspace{5em}录}
 \newcommand\ackname{致\hspace{1em}谢}
