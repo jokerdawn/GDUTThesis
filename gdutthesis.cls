@@ -90,8 +90,9 @@
 %    \setlength{\thu@linespace}{#2*\real{#1}}  %#1默认为\baselinestretch 即字号大小乘与N倍行距 
 %    \fontsize{#2}{\thu@linespace}\selectfont}
 
-%在Word中，五号（10.5pt）的宋体字，行距为13.5pt，行距为字体大小的1.286倍.而黑体一样。Adobe song STD的字体磅数与行距大小
-%比为1：1.523，而Adobe Heiti STD的是，1：619.一个词形容，贵圈真乱。
+%在Word中，五号（10.5pt）的宋体字，行距为13.5pt，行距为字体大小的1.286倍，而黑体一样。Adobe song STD的字体磅数与行距大小
+%比为1：1.523，而Adobe Heiti STD的是，1：1.619。至于Times New Roman为1：1.18。混合排版的话以最大为基准排。
+%再多嘴一句，假如你需要高仿Word精确排版，请不断尝试。一个词形容，贵圈真乱。
 
 %需要精确修改的话，可以使用在换字体的时候修改命令A处#1的值，或直接在xiaochu后加个[系数]
 
