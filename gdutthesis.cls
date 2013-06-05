@@ -90,9 +90,14 @@
 %    \setlength{\thu@linespace}{#2*\real{#1}}  %#1默认为\baselinestretch 即字号大小乘与N倍行距 
 %    \fontsize{#2}{\thu@linespace}\selectfont}
 
+%在Word中，五号（10.5pt）的宋体字，行距为13.5pt，行距为字体大小的1.286倍.而黑体一样。Adobe song STD的字体磅数与行距大小
+%比为1：1.523，而Adobe Heiti STD的是，1：619.一个词形容，贵圈真乱。
+
+%需要精确修改的话，可以使用在换字体的时候修改命令A处#1的值，或直接在xiaochu后加个[系数]
+
 %附上一个以Lineskip为基准的选择字体命令，这样符合使用Word者的习惯，1.5倍行距则\renewcommand{\baselinestretch}{1.5} 
 %http://blog.he96.com/2011/09/tex.html
-\newcommand{\thu@choosefont}[2]{\fontsize{#2}{#1\baselineskip}\selectfont}
+\newcommand{\thu@choosefont}[2]{\fontsize{#2}{#1\baselineskip}\selectfont} %命令A
     
 \def\thu@define@fontsize#1#2{%
     \expandafter\newcommand\csname #1\endcsname[1][\baselinestretch]{%
