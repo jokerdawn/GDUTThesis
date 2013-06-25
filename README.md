@@ -1,12 +1,12 @@
-GDUTthesis
+#GDUTthesis
 
-广东工业大学学位论文TeX模板。
+##广东工业大学学位论文TeX模板。
 
 V1.0
 
 模板的开发是直接修改华南师范大学的潘伟洲同学的模板，他的模板http://wzpan.github.io/scnuthesis  我在此表达强烈谢意。
 
-修改列表：
+###修改列表：
 
 1、删除了不必要的宏包以及样式
 
@@ -32,7 +32,7 @@ V1.0
 
 12、修改了参考文献样式
 
-使用方法
+###使用方法
 Win：完整安装TeX Live或CTeX，编写TeX源文件，运行Makepdf.bat即可。
 
 Linux:完整安装TeX Live或CTeX，编写TeX源文件，运行Make。
