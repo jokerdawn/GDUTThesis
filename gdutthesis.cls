@@ -15,14 +15,14 @@
 %% through LaTeX.
 %% 
 %% Any Suggestions : Contact me <jdse88@gmail.com>
+%% Thanks Joseph Pan!
 %% Thanks the thuthesis class!
-%% Thanks sofoot for the original NUDT paper class!
-%% Thank other thesis class developer.
+%% Thanks the original NUDT paper class!
 %% 
 %------------------------------------------------------------------------
 %声明
 %------------------------------------------------------------------------
-\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{gdutthesis}
 
 \newif\ifistwoside\istwosidefalse
@@ -386,51 +386,6 @@
 \captionsetup[subfloat]{justification=centering}
 \renewcommand{\thesubfigure}{\alph{subfigure}}
 \renewcommand{\thesubtable}{\alph{subtable}}
-
-\renewtheoremstyle{nonumberplain}%
-{\item[\hspace*{2em} \theorem@headerfont ##1\ \theorem@separator]}%
-{\item[\hspace*{2em} \theorem@headerfont ##1\ (##3)\theorem@separator]}
-\theoremstyle{nonumberplain}
-\theorembodyfont{\rmfamily}
-\theoremheaderfont{\sffamily}
-\theoremsymbol{\ensuremath{\blacksquare}}
-\theoremseparator{:\,}
-\newtheorem{proof}{证明}[chapter]
-\newtheorem{assumption}{假设}[chapter]
-\newtheorem{definition}{定义}[chapter]
-
-\renewtheoremstyle{plain}%
-{\item[\hspace*{2em} \theorem@headerfont ##1\ ##2\theorem@separator]}%
-{\item[\hspace*{2em} \theorem@headerfont ##1\ ##2\ (##3)\theorem@separator]}
-\theoremstyle{plain}
-\theorembodyfont{\kai}
-\theoremheaderfont{\hei}
-\theoremsymbol{}
-\newtheorem{lemma}{引理}[chapter]
-\newtheorem{theorem}{定理}[chapter]
-\newtheorem{axiom}{公理}[chapter]
-\newtheorem{corollary}{推论}[chapter]
-\newtheorem{conjecture}{猜想}[chapter]
-\newtheorem{proposition}{命题}[chapter]
-\newtheorem{exercise}{练习}[section]
-\newtheorem{example}{例}[section]
-\newtheorem{problem}{问题}[section]
-\newtheorem{remark}{注释}[section]
-\renewenvironment{split}{%
-  \if@display%
-    \ifinner%
-      \@xp\@xp\@xp\split@aligned%
-    \else%
-      \ifst@rred \else \global\@eqnswtrue \fi%
-    \fi%
-  \fi%
-  \collect@body\gather@split%
-}{%
-  \crcr%
-  \egroup%
-  \egroup%
-  \iftagsleft@ \@xp\lendsplit@ \else \@xp\rendsplit@ \fi%
-}
 
 \endinput
 %%
