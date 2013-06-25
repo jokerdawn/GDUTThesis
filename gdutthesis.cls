@@ -1,23 +1,51 @@
-\NeedsTeXFormat{LaTeX2e}
+%% Old File `scnuthesis.cls` belongs to Joseph Pan <cs.wzpan@gmail.com>
+%%
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3a
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3a or later is part of all distributions of LaTeX
+%% version 2004/10/01 or later.
+%% 
+%% To produce the documentation run the original source files ending with `.dtx'
+%% through LaTeX.
+%% 
+%% Any Suggestions : Contact me <jdse88@gmail.com>
+%% Thanks the thuthesis class!
+%% Thanks sofoot for the original NUDT paper class!
+%% Thank other thesis class developer.
+%% 
+%------------------------------------------------------------------------
+%声明
+%------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{gdutthesis}
 
-\newif\ifisttf\isttftrue
 \newif\ifistwoside\istwosidefalse
 \DeclareOption{twoside}{\istwosidetrue}
+
+\newif\ifisttf\isttftrue
 \DeclareOption{ttf}{\isttftrue}
 \DeclareOption{otf}{\isttffalse}
-\newif\ifisws\iswsfalse
-\DeclareOption{ws}{\iswstrue}
+
 \DeclareOption*{\PackageWarning{gdutthesis}{Unknown Option '\CurrentOption'}}
 \ProcessOptions\relax
+
 \RequirePackage{ifthen,calc}
 
 \ifistwoside
   \LoadClass[a4paper,12pt,openright,twoside]{book}
 \else
-  \LoadClass[a4paper,12pt,oneside]{book}
-  \fi
-  
+  \LoadClass[a4paper,12pt,openany,oneside]{book}
+\fi
+
+%------------------------------------------------------------------------
+%宏包
+%------------------------------------------------------------------------  
 \RequirePackage[includefoot]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage[center]{titlesec}
@@ -33,30 +61,38 @@
 \RequirePackage{xcolor}
 \RequirePackage{amsmath,amssymb,bm}
 \RequirePackage[varg]{txfonts}
-\RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
+\RequirePackage[amsmath,thmmarks,hyperref]{ntheorem} %宏包兼容
 \RequirePackage[CJKnumber,no-math,BoldFont,SlantFont]{xeCJK}
 \RequirePackage{indentfirst}
 \RequirePackage[numbers,sort&compress,square]{natbib}
 \RequirePackage[CJKbookmarks=true,pdfborder=0 0 1]{hyperref}
 
+%------------------------------------------------------------------------
+%其他
+%------------------------------------------------------------------------
+
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}} %表格左右居中对齐
+
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} 
+
+%------------------------------------------------------------------------
+%字体与字号
+%------------------------------------------------------------------------
 \defaultfontfeatures{Mapping=tex-text} %Using the tex-text mapping is also equivalent to writing Ligatures=TeX. 
 %The use of the latter syntax is recommended for better compatibility with LuaTEX documents.
 %http://mirror.math.ku.edu/tex-archive/macros/latex/contrib/fontspec/fontspec.pdf
+%You can also define a command for em-dash specially.
 
 \xeCJKsetcharclass{"0}{"2E7F}{0}
-\xeCJKsetcharclass{"2E80}{"FFFF}{1}
+\xeCJKsetcharclass{"2E80}{"FFFF}{1} %Address of Unicode
 
 \newcommand\installTTF{%
   \setmainfont{Times New Roman}
   \setsansfont{Arial}
-  \setmonofont{Courier New}
-  \ifisws
-    \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
-    \setCJKmonofont{KaiTi} % Pluto use LiSu Thu use Kaiti, orig is SimSun
-  \else
-    \setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi_GB2312}]{SimSun}
-    \setCJKmonofont{KaiTi_GB2312} % Pluto use LiSu Thu use Kaiti, orig is SimSun
-  \fi
+  \setmonofont{Courier New} %mono为等宽字体
+ %\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
+  \setCJKmainfont{SimSun}
   \setCJKsansfont{SimHei}
   \setCJKfamilyfont{song}{SimSun}
   \setCJKfamilyfont{hei}{SimHei}
@@ -65,10 +101,11 @@
 \newcommand\installOTF{%
   \setmainfont{Times New Roman} % could be changed to "Times New Roman PS Std"
   \setsansfont{Arial}
-  \setmonofont{Courier New}
-  \setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{Adobe Song Std}
+  \setmonofont{Courier New} 
+  %\setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{Adobe Song Std}
+  \setCJKmainfont{Adobe Song Std}
   \setCJKsansfont{Adobe Heiti Std}
-  \setCJKmonofont{Adobe Kaiti Std}
+  %\setCJKmonofont{Adobe Kaiti Std}
   \setCJKfamilyfont{song}{Adobe Song Std}
   \setCJKfamilyfont{hei}{Adobe Heiti Std}
 }
@@ -84,51 +121,28 @@
 \def\songti{\song}
 \def\heiti{\hei}
 
-\newlength\thu@linespace %自定义基线大小 原命令为\baselineskip 或 \lineskip
+\newcommand{\chuhao}{\fontsize{42bp}{\baselineskip}\selectfont}
+\newcommand{\xiaochu}{\fontsize{36bp}{\baselineskip}\selectfont}
+\newcommand{\yihao}{\fontsize{26bp}{\baselineskip}\selectfont}
+\newcommand{\xiaoyi}{\fontsize{24bp}{\baselineskip}\selectfont}
+\newcommand{\erhao}{\fontsize{22bp}{\baselineskip}\selectfont}
+\newcommand{\xiaoer}{\fontsize{18bp}{\baselineskip}\selectfont}
+\newcommand{\sanhao}{\fontsize{16bp}{\baselineskip}\selectfont}
+\newcommand{\xiaosan}{\fontsize{15bp}{\baselineskip}\selectfont}
+\newcommand{\sihao}{\fontsize{14bp}{\baselineskip}\selectfont}
+\newcommand{\xiaosi}{\fontsize{12bp}{\baselineskip}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5bp}{\baselineskip}\selectfont}
+\newcommand{\xiaowu}{\fontsize{9bp}{\baselineskip}\selectfont}
+\newcommand{\liuhao}{\fontsize{7.5bp}{\baselineskip}\selectfont}
+\newcommand{\xiaoliu}{\fontsize{6.5bp}{\baselineskip}\selectfont}
+\newcommand{\qihao}{\fontsize{5.5bp}{\baselineskip}\selectfont}
+\newcommand{\bahao}{\fontsize{5.0bp}{\baselineskip}\selectfont}
 
-%\newcommand{\thu@choosefont}[2]{%
-%    \setlength{\thu@linespace}{#2*\real{#1}}  %#1默认为\baselinestretch 即字号大小乘与N倍行距 
-%    \fontsize{#2}{\thu@linespace}\selectfont}
+\renewcommand{\baselinestretch}{1.25}  % 1.5行距，计算公式 “行距/1.2=倍数”
 
-%在Word中，五号（10.5pt）的宋体字，行距为13.5pt，行距为字体大小的1.286倍，而黑体一样。Adobe song STD的字体磅数与行距大小
-%比为1：1.523，而Adobe Heiti STD的是，1：1.619。至于Times New Roman为1：1.18。混合排版的话以最大为基准排。
-%再多嘴一句，假如你需要高仿Word精确排版，请不断尝试。一个词形容，贵圈真乱。
-
-%需要精确修改的话，可以使用在换字体的时候修改命令A处#1的值，或直接在xiaochu后加个[系数]
-
-%附上一个以Lineskip为基准的选择字体命令，这样符合使用Word者的习惯，1.5倍行距则\renewcommand{\baselinestretch}{1.5} 
-%http://blog.he96.com/2011/09/tex.html
-\newcommand{\thu@choosefont}[2]{\fontsize{#2}{#1\baselineskip}\selectfont} %命令A
-    
-\def\thu@define@fontsize#1#2{%
-    \expandafter\newcommand\csname #1\endcsname[1][\baselinestretch]{%
-    \thu@choosefont{##1}{#2}}}
-
-\thu@define@fontsize{chuhao}{42bp}
-\thu@define@fontsize{xiaochu}{36bp}
-\thu@define@fontsize{yihao}{26bp}
-\thu@define@fontsize{xiaoyi}{24bp}
-\thu@define@fontsize{erhao}{22bp}
-\thu@define@fontsize{xiaoer}{18bp}
-\thu@define@fontsize{sanhao}{16bp}
-\thu@define@fontsize{xiaosan}{15bp}
-\thu@define@fontsize{sihao}{14bp}
-\thu@define@fontsize{banxiaosi}{13bp}
-\thu@define@fontsize{xiaosi}{12bp}
-\thu@define@fontsize{dawu}{11bp}
-\thu@define@fontsize{wuhao}{10.5bp}
-\thu@define@fontsize{xiaowu}{9bp}
-\thu@define@fontsize{liuhao}{7.5bp}
-\thu@define@fontsize{xiaoliu}{6.5bp}
-\thu@define@fontsize{qihao}{5.5bp}
-\thu@define@fontsize{bahao}{5bp}
-
-\renewcommand{\baselinestretch}{1.5}
-
-\renewcommand{\tabularxcolumn}[1]{m{#1}}
-
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} 
-
+%------------------------------------------------------------------------
+%中文元素
+%------------------------------------------------------------------------
 \renewcommand\contentsname{目\hspace{5em}录}
 \newcommand\ackname{致\hspace{1em}谢}
 \newcommand\equationname{公式}
@@ -139,50 +153,61 @@
 \def\CJK@today{\heiti{\the\year 年 \the\month 月}}
 \newcommand\zhtoday{\CJK@today}
 \newcommand\entoday{\today{}}
+
+%------------------------------------------------------------------------
+%页边距与页面样式
+%------------------------------------------------------------------------
 \geometry{top=28mm,bottom=15mm,left=30mm,right=20mm,nohead}
 \geometry{footskip=10mm}
  
-\newcommand\dlmu[2][6.5cm]{\hskip1pt\underline{\hb@xt@#1{\hss#2\hss}}\hskip3pt}
+\newcommand\dlmu[2][6.5cm]{\hskip1pt\underline{\hb@xt@#1{\hss#2\hss}}\hskip3pt} %设置下划线
 
-\fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}}
-
-\fancypagestyle{mainpage}{\fancyhf{}\fancyfoot[ER,OR]{\thepage}}
-
-\fancypagestyle{appendixpage}{\fancyhf{}\fancyfoot[ER,OR]{\thepage}}
-
-\fancypagestyle{emptypage}{\fancyhf{}\fancyfoot[ER,OR]{\thepage}}
+\ifistwoside
+  \fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}}
+  \fancypagestyle{mainpage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
+  \fancypagestyle{backpage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
+  \fancypagestyle{emptypage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
+\else
+  \fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}}
+  \fancypagestyle{mainpage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
+  \fancypagestyle{backpage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
+  \fancypagestyle{emptypage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
+\fi
 
 \renewcommand\frontmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
-  \clearpage
+  %\clearpage
     \@mainmatterfalse
-	\fancyhf{}
+	  \fancyhf{}
     \pagestyle{plain}
 }
 
 \renewcommand\mainmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
-	\clearpage
     \@mainmattertrue
     \pagenumbering{arabic}
-    \normalsize % normal, 正文开始
-    \def\@tabular{\wuhao[0.85]\old@tabular} % 之后表格字体使用5号
+    \xiaosi 
+    \def\@tabular{\wuhao\old@tabular}
     \pagestyle{mainpage}
   }
+
 \renewcommand\backmatter{%
     \if@openright\cleardoublepage\else\clearpage\fi
-	\clearpage	
-    \pagestyle{appendixpage}
+	%\clearpage	
+    \pagestyle{backpage}
   }
   
 \newenvironment{ack}{%
   \thispagestyle{emptypage}
   \chapter*{\ackname}%
   \addcontentsline{toc}{chapter}{致谢}%
-  \xiaosi[1]%
+  \xiaosi%
   \@afterheading
 }
 
+%------------------------------------------------------------------------
+%附录
+%------------------------------------------------------------------------
 \newcounter{appx}[chapter]
 \renewcommand{\theappx}{\Alph{appx}}
 \newcommand{\appx}[1]{\refstepcounter{appx}%
@@ -199,12 +224,15 @@
 \renewcommand{\theappxfig}{\theappx\arabic{appxfig}}
 \newcommand{\appxfig}{\refstepcounter{appxfig}\centering \song{\par{图\hspace{0.2em}}\theappxfig\quad}}
 
-\newcommand{\appxtoc}[1]{\appx{#1}\par\addcontentsline{toc}{chapter}{附录\theappx}}
+\newcommand{\appxtle}[1]{\appx{#1}\par\addcontentsline{toc}{chapter}{附录\theappx}}
 
 \newenvironment{appxchp}{%
-\@afterheading%
-\clearpage}{}
+\clearpage%
+\@afterheading}{}
 
+%------------------------------------------------------------------------
+%单面打印设置
+%------------------------------------------------------------------------
 \renewcommand\cleardoublepage{\clearpage\if@openright \ifodd\c@page
   \else
   \newpage{}
@@ -216,51 +244,53 @@
   \clearpage\fi\fi%
 }
 
+%------------------------------------------------------------------------
+%摘要
+%------------------------------------------------------------------------
 \newcommand\cabstractname{摘\hspace{2em}要}
 \newcommand\ckeywordsname{{\heiti \sihao \textbf{关键词}}}
 \newcommand\ckeywords[1]{\xiaosi \songti \ckeywordsname: #1}
 
 \newcommand\eabstractname{Abstract}
-\newcommand\ekeywordsname{\xiaosi \textbf{KEY WORDS}}
+\newcommand\ekeywordsname{\sihao \textbf{KEY WORDS}}
 \newcommand\ekeywords[1]{{\xiaosi \ekeywordsname: #1}}
 
 \newenvironment{cabstract}{%
   \titleformat*{\chapter}{\xiaosan \heiti \filcenter \bfseries}
   \chapter*{\cabstractname}
-  \xiaosi[1]
+  \xiaosi
   \@afterheading}
 {\par\vspace{1em}\par}
 
 \newenvironment{eabstract}{%
   \titleformat*{\chapter}{\sihao \filcenter \bfseries}
   \chapter*{\eabstractname}
-  \xiaosi[1]
+  \xiaosi
   \@afterheading}
 {\par\vspace{1em}\par}
 
-\titlecontents{chapter}[0pt]{\vspace{6bp} \heiti \xiaosi[1]}
+\titlecontents{chapter}[0pt]{\vspace{6bp} \heiti \xiaosi}
     {\thecontentslabel\quad}{}
     {\titlerule*{.}\contentspage}
-\titlecontents{section}[1.5em]{\songti \xiaosi[1]}
+\titlecontents{section}[1.5em]{\songti \xiaosi}
     {\thecontentslabel\quad}{}
     {\titlerule*{.}\contentspage}
-\titlecontents{subsection}[3em]{\songti \xiaosi[1]}
+\titlecontents{subsection}[3em]{\songti \xiaosi}
     {\thecontentslabel\quad}{}
     {\titlerule*{.}\contentspage}
 
-
+%------------------------------------------------------------------------
+%标题与目录设置
+%------------------------------------------------------------------------
 \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
-                     \clearpage
                     \global\@topnum\z@
                     \@afterindentfalse
                     \secdef\gdut@chapter\@schapter}
-					
 
 \def\gdut@chapter[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \if@openright\cleardoublepage\else\clearpage\fi
-	\clearpage
-    \phantomsection %指引到标签\label所在的位置，http://zh.wikibooks.org/wiki/LaTeX/%E6%A0%87%E8%AE%B0%E4%B8%8E%E5%BC%95%E7%94%A8
+    \phantomsection %指引到标签\label所在的位置
     \if@mainmatter
       \refstepcounter{chapter}%
       \addcontentsline{toc}{chapter}%
@@ -271,20 +301,14 @@
   \else
     \addcontentsline{toc}{chapter}{#1}%
   \fi
-  \chaptermark{#1}%
-  \if@twocolumn
-    \@topnewpage[\@makechapterhead{#2}]%
-  \else
-    \@makechapterhead{#2}%
-    \@afterheading
-  \fi
+   \@makechapterhead{#2}%
 }
 
 \newcommand{\sectionbreak}{\addpenalty{-300}\vspace*{0pt}}
 
 \setlength{\topskip}{0pt}
 \setcounter{secnumdepth}{3} % 数字到subsection
-\titleformat{\chapter}{\filcenter \heiti \bfseries \sanhao}{\thechapter}{1.2em}{}
+\titleformat{\chapter}{\filcenter \sanhao \heiti \bfseries }{\thechapter}{1.2em}{}
 \titleformat{\section}{\heiti \bfseries\xiaosi}{\thesection}{0.2em}{}
 \titleformat{\subsection}{\heiti \xiaosi}{\thesubsection}{1em}{}
 
@@ -326,6 +350,9 @@
   {\@latex@warning{Empty `thebibliography' environment}}%
   \endlist\frenchspacing}
 
+%------------------------------------------------------------------------
+%表格
+%------------------------------------------------------------------------
 \aboverulesep=0pt
 \belowrulesep=0pt
 \heavyrulewidth=0.10em
@@ -347,13 +374,13 @@
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.80}
 
-\let\old@tabular\@tabular
+\let\old@tabular\@tabular %
 
-\DeclareCaptionLabelFormat{tabularlabel}{{{\wuhao[0.75]} \heiti #1~\rmfamily #2}}
-\DeclareCaptionLabelFormat{figurelabel}{{{\wuhao[0.75]} \song #1~\rmfamily #2}}
+\DeclareCaptionLabelFormat{tabularlabel}{{{\wuhao} \heiti #1~\rmfamily #2}}
+\DeclareCaptionLabelFormat{figurelabel}{{{\wuhao} \song #1~\rmfamily #2}}
 \DeclareCaptionLabelSeparator{floatsong}{\hspace{1em}}
-\DeclareCaptionFont{tabularcap}{{\wuhao[0.75]}\bfseries \heiti}
-\DeclareCaptionFont{figurecap}{{\wuhao[0.75]}\song}
+\DeclareCaptionFont{tabularcap}{{\wuhao}\bfseries \heiti}
+\DeclareCaptionFont{figurecap}{{\wuhao}\song}
 \captionsetup[table]{position=top,belowskip=-0.2em,aboveskip=0.1em,labelformat=tabularlabel,labelsep=floatsong,font=tabularcap}
 \captionsetup[figure]{position=bottom,belowskip=0.1em,aboveskip=-0.2em,labelformat=figurelabel,labelsep=floatsong,font=figurecap}
 \captionsetup[subfloat]{justification=centering}
@@ -389,7 +416,6 @@
 \newtheorem{example}{例}[section]
 \newtheorem{problem}{问题}[section]
 \newtheorem{remark}{注释}[section]
-
 \renewenvironment{split}{%
   \if@display%
     \ifinner%
@@ -407,3 +433,5 @@
 }
 
 \endinput
+%%
+%% End of file `gdutthesis.cls'.
