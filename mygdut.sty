@@ -6,23 +6,19 @@
 \RequirePackage{algorithmic}
 
 \lstset{
-  columns=flexible,sensitive=true,lineskip=-3pt,
-  basicstyle=\small\ttfamily,
-  keywordstyle=\color{black},
-  stringstyle=\ttfamily,
-  %commentstyle=\color{red!50!green!50!blue!50},
-  numbers=left,
-  numbersep=0.5em,
-  numberstyle=\small,
-  %xleftmargin=0.5em,
-  %xrightmargin=0.5em,
-  xleftmargin=1.5em,
-  framexleftmargin=1em,
-  aboveskip=0.5em,
-  showstringspaces=false,
-  breaklines=true,extendedchars=true, %跨行
-  escapeinside=``
-  %,frame=shadowbox,rulesepcolor=\color{red!20!green!20!blue!20}
+    columns=flexible,sensitive=true,lineskip=-3pt,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{black},
+    stringstyle=\ttfamily,
+    numbers=left,
+    numbersep=0.5em,
+    numberstyle=\small,
+    xleftmargin=1.5em,
+    framexleftmargin=1em,
+    aboveskip=0.5em,
+    showstringspaces=false,
+    breaklines=true,extendedchars=true, %跨行
+    escapeinside={`}{`}
 }
 
 \algsetup{indent=3em}
@@ -31,8 +27,8 @@
 \renewcommand{\algorithmicensure}{\textbf{求:}}
 
 \DefineVerbatimEnvironment{code}{Verbatim}%
-  {frame=single,framerule=0.3mm,rulecolor=\color{black},%
-   fillcolor=\color{red!20!green!20!blue!20},framesep=1mm,fontsize=\small}
+    {frame=single,framerule=0.3mm,rulecolor=\color{black},%
+    fillcolor=\color{red!20!green!20!blue!20},framesep=1mm,fontsize=\small}
 
 \newcommand{\ve}[1]{\ensuremath{\bm #1}}
 

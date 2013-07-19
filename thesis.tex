@@ -25,7 +25,7 @@
 %% Thanks sofoot for the original NUDT paper class!
 %% 
 
-\documentclass[otf,oneside]{gdutthesis}
+\documentclass[otf,oneside,cn]{gdutthesis}
 \usepackage{mygdut}
 
 \begin{document}
@@ -33,28 +33,25 @@
 
 \frontmatter
 \input{data/cover}
-\input{data/abstract}
+\iftrans{\input{data/abstract}}{}
 
 % 生成目录
 \tableofcontents
 
 % 书写正文，可以根据需要增添章节。
 \mainmatter
-%\input{data/chap01}
-\input{data/chap02}
-\input{data/chap03}
-%\input{data/chap04}
+\iftrans{\input{data/chap01}\input{data/chap02}}{\input{data/translation}\input{data/original}}
 
 % 参考文献
-\input{data/bib}
+\bibliographystyle{GBT7714-2005-UTF8-N}
+\iftrans{\bibliography{ref/refs}}{}
 
 % 致谢
-\input{data/ack}
+\iftrans{\input{data/ack}}{}
 
 % 附录
 \backmatter
-\input{data/appendix01}
-%\input{data/appendix02}
+\iftrans{\input{data/appendix01}}{}
 
 \end{document}
 %%

@@ -1,4 +1,19 @@
 %Environment fengmian
+
+\serialno{310900XXXX} % 学号
+\title{XXXX} % 中文题目
+\author{JD} % 中文作者名
+\supervisor{CJ} % 导师
+\college{WLGDGC} % 学院
+\major{EE}%专业
+\majorfield{ME}%专业方向
+\grade{2009} %年级，入学年份
+\class{4} %班
+
+%------------------------------------------------------------------------
+%制作封面（没必要不要动）
+%------------------------------------------------------------------------
+
 \begin{flushleft}
 \hspace{8.5mm}\includegraphics[height=2.19cm,width=2.21cm]{xiaohui.jpg} %校徽
 \end{flushleft}
@@ -11,17 +26,19 @@
 \end{center}
 \vspace{20mm}
 \begin{center}
-{\heiti \erhao \textbf{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}}
+\ifthenelse{\gduttranslation=0}{\heiti \erhao \textbf{\@title}}{\song \erhao {外文参考文献译文及原文}}
 \end{center}
 \vspace{28mm}
 \begin{center}
-{\sanhao \heiti {学\hspace{2em}院\hspace{3mm}\dlmu{\textbf{物理光电工程学院}}}}\\\vspace{2.4mm}
-{\sanhao \heiti {专\hspace{2em}业\hspace{3mm}\dlmu{\textbf{电子科学与技术}}}}\\\vspace{2.4mm}
-{\sanhao \heiti {\hspace{4em}\hspace{3mm}\dlmu{\textbf{（微电子技术方向）}}}}\\\vspace{2.4mm}
-{\sanhao \heiti {年级班别\hspace{3mm}\dlmu{\textbf{XXXXXXXXX}}}}\\\vspace{2.4mm}
-{\sanhao \heiti {学\hspace{2em}号\hspace{3mm}\dlmu{\textbf{XXXXXXXX}}}}\\\vspace{2.4mm}
-{\sanhao \heiti {学生姓名\hspace{3mm}\dlmu{\textbf{XX}}}}\\\vspace{2.4mm}
-{\sanhao \heiti {指导教师\hspace{3mm}\dlmu{\textbf{XX}}}}
+\makeatletter
+{\sanhao \heiti {学\hspace{2em}院\hspace{3mm}\dlmu{\textbf{\@college}}}}\\\vspace{2.4mm}
+{\sanhao \heiti {专\hspace{2em}业\hspace{3mm}\dlmu{\textbf{\@major}}}}\\\vspace{2.4mm}
+{\sanhao \heiti {\hspace{4em}\hspace{3mm}\dlmu{\textbf{（\@majorfield）}}}}\\\vspace{2.4mm}
+{\sanhao \heiti {年级班别\hspace{3mm}\dlmu{\textbf{\@grade 级（\@class）班}}}}\\\vspace{2.4mm}
+{\sanhao \heiti {学\hspace{2em}号\hspace{3mm}\dlmu{\textbf{\@serialno}}}}\\\vspace{2.4mm}
+{\sanhao \heiti {学生姓名\hspace{3mm}\dlmu{\textbf{\@author}}}}\\\vspace{2.4mm}
+{\sanhao \heiti {指导教师\hspace{3mm}\dlmu{\textbf{\@supervisor}}}}
+\makeatother
 \end{center}
 \vfill
 \begin{center}
@@ -29,3 +46,4 @@
 \sanhao \heiti {\CJK@today}
 \makeatother
 \end{center}
+

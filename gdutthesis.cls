@@ -32,15 +32,19 @@
 \DeclareOption{ttf}{\isttftrue}
 \DeclareOption{otf}{\isttffalse}
 
+\newif\ifistranslation\istranslationtrue
+\DeclareOption{en}{\istranslationtrue}
+\DeclareOption{cn}{\istranslationfalse}
+
 \DeclareOption*{\PackageWarning{gdutthesis}{Unknown Option '\CurrentOption'}}
 \ProcessOptions\relax
 
 \RequirePackage{ifthen,calc}
 
 \ifistwoside
-  \LoadClass[a4paper,12pt,openright,twoside]{book}
+	\LoadClass[a4paper,12pt,openright,twoside]{book}
 \else
-  \LoadClass[a4paper,12pt,openany,oneside]{book}
+	\LoadClass[a4paper,12pt,openany,oneside]{book}
 \fi
 
 %------------------------------------------------------------------------
@@ -71,7 +75,6 @@
 %其他
 %------------------------------------------------------------------------
 
-
 \renewcommand{\tabularxcolumn}[1]{m{#1}} %表格左右居中对齐
 
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} 
@@ -88,32 +91,29 @@
 \xeCJKsetcharclass{"2E80}{"FFFF}{1} %Address of Unicode
 
 \newcommand\installTTF{%
-  \setmainfont{Times New Roman}
-  \setsansfont{Arial}
-  \setmonofont{Courier New} %mono为等宽字体
- %\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
-  \setCJKmainfont{SimSun}
-  \setCJKsansfont{SimHei}
-  \setCJKfamilyfont{song}{SimSun}
-  \setCJKfamilyfont{hei}{SimHei}
+	\setmainfont{Times New Roman}
+	\setsansfont{Arial}
+	\setmonofont{Courier New}
+	\setCJKmainfont{SimSun}
+	\setCJKsansfont{SimHei}
+	\setCJKfamilyfont{song}{SimSun}
+	\setCJKfamilyfont{hei}{SimHei}
 }
 
 \newcommand\installOTF{%
-  \setmainfont{Times New Roman} % could be changed to "Times New Roman PS Std"
-  \setsansfont{Arial}
-  \setmonofont{Courier New} 
-  %\setCJKmainfont[BoldFont={Adobe Heiti Std},ItalicFont={Adobe Kaiti Std}]{Adobe Song Std}
-  \setCJKmainfont{Adobe Song Std}
-  \setCJKsansfont{Adobe Heiti Std}
-  %\setCJKmonofont{Adobe Kaiti Std}
-  \setCJKfamilyfont{song}{Adobe Song Std}
-  \setCJKfamilyfont{hei}{Adobe Heiti Std}
+	\setmainfont{Times New Roman} % could be changed to "Times New Roman PS Std"
+	\setsansfont{Arial}
+	\setmonofont{Courier New} 
+	\setCJKmainfont{Adobe Song Std}
+	\setCJKsansfont{Adobe Heiti Std}
+	\setCJKfamilyfont{song}{Adobe Song Std}
+	\setCJKfamilyfont{hei}{Adobe Heiti Std}
 }
 
 \ifisttf
-  \installTTF
+	\installTTF
 \else
-  \installOTF
+	\installOTF
 \fi
 
 \newcommand{\song}{\CJKfamily{song}}    % 宋体
@@ -163,46 +163,44 @@
 \newcommand\dlmu[2][6.5cm]{\hskip1pt\underline{\hb@xt@#1{\hss#2\hss}}\hskip3pt} %设置下划线
 
 \ifistwoside
-  \fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}}
-  \fancypagestyle{mainpage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
-  \fancypagestyle{backpage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
-  \fancypagestyle{emptypage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
+	\fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}}
+	\fancypagestyle{mainpage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
+	\fancypagestyle{backpage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
+	\fancypagestyle{emptypage}{\fancyhf{}\fancyfoot[EL,OR]{\xiaowu \thepage}}
 \else
-  \fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}}
-  \fancypagestyle{mainpage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
-  \fancypagestyle{backpage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
-  \fancypagestyle{emptypage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
+	\fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}}
+	\fancypagestyle{mainpage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
+	\fancypagestyle{backpage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
+	\fancypagestyle{emptypage}{\fancyhf{}\fancyfoot[ER,OR]{\xiaowu \thepage}}
 \fi
 
 \renewcommand\frontmatter{%
-    \if@openright\cleardoublepage\else\clearpage\fi
-  %\clearpage
-    \@mainmatterfalse
-	  \fancyhf{}
-    \pagestyle{plain}
+	\if@openright\cleardoublepage\else\clearpage\fi
+	\@mainmatterfalse
+	\fancyhf{}
+	\pagestyle{plain}
 }
 
 \renewcommand\mainmatter{%
-    \if@openright\cleardoublepage\else\clearpage\fi
-    \@mainmattertrue
-    \pagenumbering{arabic}
-    \xiaosi 
-    \def\@tabular{\wuhao\old@tabular}
-    \pagestyle{mainpage}
-  }
+	\if@openright\cleardoublepage\else\clearpage\fi
+	\@mainmattertrue
+	\pagenumbering{arabic}
+	\normalsize 
+	\def\@tabular{\wuhao\old@tabular}
+	\pagestyle{mainpage}
+}
 
 \renewcommand\backmatter{%
-    \if@openright\cleardoublepage\else\clearpage\fi
-	%\clearpage	
-    \pagestyle{backpage}
-  }
-  
+	\if@openright\cleardoublepage\else\clearpage\fi
+	\pagestyle{backpage}
+}
+	
 \newenvironment{ack}{%
-  \thispagestyle{emptypage}
-  \chapter*{\ackname}%
-  \addcontentsline{toc}{chapter}{致谢}%
-  \xiaosi%
-  \@afterheading
+	\thispagestyle{emptypage}
+	\chapter*{\ackname}%
+	\addcontentsline{toc}{chapter}{致谢}%
+	\xiaosi%
+	\@afterheading
 }
 
 %------------------------------------------------------------------------
@@ -226,22 +224,20 @@
 
 \newcommand{\appxtle}[1]{\appx{#1}\par\addcontentsline{toc}{chapter}{附录\theappx}}
 
-\newenvironment{appxchp}{%
-\clearpage%
-\@afterheading}{}
+\newenvironment{appxchp}{\clearpage\@afterheading}{}
 
 %------------------------------------------------------------------------
 %单面打印设置
 %------------------------------------------------------------------------
-\renewcommand\cleardoublepage{\clearpage\if@openright \ifodd\c@page
-  \else
-  \newpage{}
-  \thispagestyle{empty}
-  \vspace*{\fill}
-  \begin{center}
-  \end{center}
-  \vspace*{\fill}
-  \clearpage\fi\fi%
+\renewcommand\cleardoublepage{\clearpage\if@openright\ifodd\c@page
+	\else
+	\newpage{}
+	\thispagestyle{empty}
+	\vspace*{\fill}
+	\begin{center}
+	\end{center}
+	\vspace*{\fill}
+	\clearpage\fi\fi%
 }
 
 %------------------------------------------------------------------------
@@ -256,52 +252,52 @@
 \newcommand\ekeywords[1]{{\xiaosi \ekeywordsname: #1}}
 
 \newenvironment{cabstract}{%
-  \titleformat*{\chapter}{\xiaosan \heiti \filcenter \bfseries}
-  \chapter*{\cabstractname}
-  \xiaosi
-  \@afterheading}
+	\titleformat*{\chapter}{\xiaosan \heiti \filcenter \bfseries}
+	\chapter*{\cabstractname}
+	\xiaosi
+	\@afterheading}
 {\par\vspace{1em}\par}
 
 \newenvironment{eabstract}{%
-  \titleformat*{\chapter}{\sihao \filcenter \bfseries}
-  \chapter*{\eabstractname}
-  \xiaosi
-  \@afterheading}
+	\titleformat*{\chapter}{\sihao \filcenter \bfseries}
+	\chapter*{\eabstractname}
+	\xiaosi
+	\@afterheading}
 {\par\vspace{1em}\par}
 
 \titlecontents{chapter}[0pt]{\vspace{6bp} \heiti \xiaosi}
-    {\thecontentslabel\quad}{}
-    {\titlerule*{.}\contentspage}
+	{\thecontentslabel\quad}{}
+	{\titlerule*{.}\contentspage}
 \titlecontents{section}[1.5em]{\songti \xiaosi}
-    {\thecontentslabel\quad}{}
-    {\titlerule*{.}\contentspage}
+	{\thecontentslabel\quad}{}
+	{\titlerule*{.}\contentspage}
 \titlecontents{subsection}[3em]{\songti \xiaosi}
-    {\thecontentslabel\quad}{}
-    {\titlerule*{.}\contentspage}
+	{\thecontentslabel\quad}{}
+	{\titlerule*{.}\contentspage}
 
 %------------------------------------------------------------------------
 %标题与目录设置
 %------------------------------------------------------------------------
 \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
-                    \global\@topnum\z@
-                    \@afterindentfalse
-                    \secdef\gdut@chapter\@schapter}
+						\global\@topnum\z@
+						\@afterindentfalse
+						\secdef\gdut@chapter\@schapter}
 
 \def\gdut@chapter[#1]#2{
-  \ifnum \c@secnumdepth >\m@ne
-    \if@openright\cleardoublepage\else\clearpage\fi
-    \phantomsection %指引到标签\label所在的位置
-    \if@mainmatter
-      \refstepcounter{chapter}%
-      \addcontentsline{toc}{chapter}%
-        {\protect\numberline{\thechapter}#1}%
-    \else
-      \addcontentsline{toc}{chapter}{#1}%
-    \fi
-  \else
-    \addcontentsline{toc}{chapter}{#1}%
-  \fi
-   \@makechapterhead{#2}%
+	\ifnum \c@secnumdepth >\m@ne
+		\if@openright\cleardoublepage\else\clearpage\fi
+		\phantomsection %指引到标签\label所在的位置
+		\if@mainmatter
+			\refstepcounter{chapter}%
+			\addcontentsline{toc}{chapter}%
+				{\protect\numberline{\thechapter}#1}%
+		\else
+			\addcontentsline{toc}{chapter}{#1}%
+		\fi
+	\else
+		\addcontentsline{toc}{chapter}{#1}%
+	\fi
+	\@makechapterhead{#2}%
 }
 
 \newcommand{\sectionbreak}{\addpenalty{-300}\vspace*{0pt}}
@@ -316,7 +312,7 @@
 \titlespacing{\section}{0pt}{0.5em}{0.5em}
 \titlespacing{\subsection}{0pt}{0.5em}{0.5em}
 
-\renewcommand\normalsize{\@setfontsize\normalsize{12bp}{12.87bp}%
+\renewcommand\normalsize{\@setfontsize\normalsize{12bp}{\baselineskip}%
 \setlength\abovedisplayskip{10bp \@plus 2bp \@minus 2bp}%
 \setlength\abovedisplayshortskip{10bp \@plus 2bp \@minus 2bp}%
 \setlength\belowdisplayskip{\abovedisplayskip}%
@@ -327,28 +323,28 @@
 \setlength{\parskip}{0bp \@plus .5bp \@minus .5bp}
 
 \renewenvironment{thebibliography}[1]{%
-  \thispagestyle{emptypage}
-  \chapter*{\bibname}%
-  \addcontentsline{toc}{chapter}{参考文献}
-  \list{\@biblabel{\@arabic\c@enumiv}}%
-  {\renewcommand{\makelabel}[1]{##1\hfill}
-    \setlength{\labelsep}{1ex}
-    \setlength{\itemindent}{0pt}
-    \setlength{\leftmargin}{\labelwidth+\labelsep}
-    \addtolength{\itemsep}{-0.2em}
-    \usecounter{enumiv}%
-    \let\p@enumiv\@empty
-    \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-  \sloppy\frenchspacing
-  \clubpenalty4000%
-  \@clubpenalty \clubpenalty
-  \widowpenalty4000%
-  \interlinepenalty4000%
-  \sfcode`\.\@m
+	\thispagestyle{emptypage}
+	\chapter*{\bibname}%
+	\addcontentsline{toc}{chapter}{参考文献}
+	\list{\@biblabel{\@arabic\c@enumiv}}%
+	{\renewcommand{\makelabel}[1]{##1\hfill}
+		\setlength{\labelsep}{1ex}
+		\setlength{\itemindent}{0pt}
+		\setlength{\leftmargin}{\labelwidth+\labelsep}
+		\addtolength{\itemsep}{-0.2em}
+		\usecounter{enumiv}%
+		\let\p@enumiv\@empty
+		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
+	\sloppy\frenchspacing
+	\clubpenalty4000%
+	\@clubpenalty \clubpenalty
+	\widowpenalty4000%
+	\interlinepenalty4000%
+	\sfcode`\.\@m
 }
 {\def\@noitemerr
-  {\@latex@warning{Empty `thebibliography' environment}}%
-  \endlist\frenchspacing}
+	{\@latex@warning{Empty `thebibliography' environment}}%
+	\endlist\frenchspacing}
 
 %------------------------------------------------------------------------
 %表格
@@ -362,7 +358,7 @@
 
 \newcommand{\figcaption}{\def\@captype{figure}\caption}
 \newcommand{\tabcaption}{\def\@captype{table}\caption}
-  
+	
 \setlength{\floatsep}{8bp \@plus 2bp \@minus 1bp}
 \setlength{\intextsep}{8bp \@plus 2bp \@minus 1bp}
 \setlength{\textfloatsep}{8bp \@plus 2bp \@minus 1bp}
@@ -387,6 +383,21 @@
 \renewcommand{\thesubfigure}{\alph{subfigure}}
 \renewcommand{\thesubtable}{\alph{subtable}}
 
+\newcommand{\Ucaption}[2]{\caption{#1}\raisebox{10.5pt}[0pt]{\hspace*{0.6\linewidth} \heiti \bfseries #2}} %10.5pt当前五号字体大小
+
+%------------------------------------------------------------------------
+%全局脚注
+%------------------------------------------------------------------------
+
+%\ifthenelse{\value{footnote}>1}{\renewcommand{\thefootnote}{注：\arabic{footnote}.}}{\renewcommand{\thefootnote}{\hspace{2em}\arabic{footnote}.}}
+
+%\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+
+%------------------------------------------------------------------------
+%定理环境
+%http://mirror.bjtu.edu.cn/CTAN/macros/latex/required/amslatex/amscls/doc/amsthdoc.pdf
+%------------------------------------------------------------------------
+ 
 \renewtheoremstyle{nonumberplain}%
 {\item[\hspace*{2em} \theorem@headerfont ##1\ \theorem@separator]}%
 {\item[\hspace*{2em} \theorem@headerfont ##1\ (##3)\theorem@separator]}
@@ -403,7 +414,7 @@
 {\item[\hspace*{2em} \theorem@headerfont ##1\ ##2\theorem@separator]}%
 {\item[\hspace*{2em} \theorem@headerfont ##1\ ##2\ (##3)\theorem@separator]}
 \theoremstyle{plain}
-\theorembodyfont{\kai}
+\theorembodyfont{\song}
 \theoremheaderfont{\hei}
 \theoremsymbol{}
 \newtheorem{lemma}{引理}[chapter]
@@ -416,22 +427,27 @@
 \newtheorem{example}{例}[section]
 \newtheorem{problem}{问题}[section]
 \newtheorem{remark}{注释}[section]
-\renewenvironment{split}{%
-  \if@display%
-    \ifinner%
-      \@xp\@xp\@xp\split@aligned%
-    \else%
-      \ifst@rred \else \global\@eqnswtrue \fi%
-    \fi%
-  \fi%
-  \collect@body\gather@split%
-}{%
-  \crcr%
-  \egroup%
-  \egroup%
-  \iftagsleft@ \@xp\lendsplit@ \else \@xp\rendsplit@ \fi%
-}
 
+%------------------------------------------------------------------------
+%封面
+%------------------------------------------------------------------------
+\def\serialno#1{\def\@serialno{#1}} % 学号
+\def\title#1{\def\@title{#1}} % 中文题目
+\def\author#1{\def\@author{#1}} % 中文作者名
+\def\supervisor#1{\def\@supervisor{#1}} % 导师
+\def\college#1{\def\@college{#1}} % 学院
+\def\major#1{\def\@major{#1}} %专业
+\def\majorfield#1{\def\@majorfield{#1}} %专业方向
+\def\grade#1{\def\@grade{#1}} %年级，入学年份
+\def\class#1{\def\@class{#1}} %班
+
+\ifistranslation
+	\newcommand{\gduttranslation}{1}
+\else
+	\newcommand{\gduttranslation}{0}
+\fi
+
+\newcommand{\iftrans}[2]{\ifthenelse{\gduttranslation=0}{#1}{#2}}
 
 \endinput
 %%
