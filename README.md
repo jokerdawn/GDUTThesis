@@ -4,8 +4,6 @@
 
 模板的开发为直接修改华南师范大学的潘伟洲同学的模板，<a herf="http://wzpan.github.io/scnuthesis">他的模板</a>。我在此表达谢意。
 
-模板的开发是直接修改华南师范大学的潘伟洲同学的模板，他的模板http://wzpan.github.io/scnuthesis 。我在此表达强烈谢意。
-
 ##V1.1
 
 ###修改列表：
