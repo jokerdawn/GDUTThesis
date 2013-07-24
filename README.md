@@ -1,8 +1,6 @@
-#GDUTthesis
+#广东工业大学学位论文TeX模板/GDUTThesis
 
-#广东工业大学学位论文TeX模板
-
-模板的开发为直接修改华南师范大学的潘伟洲同学的模板，<a herf="http://wzpan.github.io/scnuthesis">他的模板</a>。我在此表达谢意。
+模板的开发为直接修改华南师范大学的潘伟洲同学的模板，<a href="http://wzpan.github.io/scnuthesis">他的模板</a>。我在此表达谢意。
 
 ##V1.1
 
